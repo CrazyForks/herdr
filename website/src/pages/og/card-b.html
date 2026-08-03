@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" class="og">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>herdr OG card — source</title>
+<meta name="robots" content="noindex" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/og-card.css?v=3" />
+<style>
+  /* Source of truth for /assets/og-card-v9.png.
+     Regenerate: open this page, capture the full document, crop to the
+     leftmost 1200x630 (the document is pinned to exactly the card size, but
+     the browser viewport may be wider). Bump the filename when the artwork
+     changes — Slack, X and LinkedIn cache unfurls by URL for weeks. */
+  .in { display: flex; flex-direction: column; justify-content: center; }
+  h1 {
+    font-family: var(--disp);
+    font-weight: 900;
+    letter-spacing: -0.055em;
+    line-height: 0.86;
+    font-size: 104px;
+    margin: 30px 0 0;
+    max-width: 15ch;
+    color: var(--ink);
+  }
+  h1 em { font-style: normal; color: var(--spot); }
+  .foot {
+    position: absolute;
+    left: 62px;
+    right: 62px;
+    bottom: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .foot .sub { color: var(--faint); font-size: 21px; letter-spacing: 0.1em; }
+  .foot .sub b { color: var(--dim); font-weight: 400; }
+</style>
+</head>
+<body class="og">
+<div class="card">
+  <span class="ram mass"></span>
+  <div class="in pad">
+    <div class="eyebrow"><s></s>the agent runtime</div>
+    <h1>Run them <em>anywhere.</em> Leave them running.</h1>
+  </div>
+  <div class="foot">
+    <div class="lockup"><span class="ram"></span><b>herdr</b></div>
+    <div class="sub"><b>herdr.dev</b> &nbsp;·&nbsp; Apache 2.0</div>
+  </div>
+</div>
+</body>
+</html>

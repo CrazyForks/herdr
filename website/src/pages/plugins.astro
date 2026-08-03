@@ -1,5 +1,5 @@
 ---
-import MarketingLayout from '../components/MarketingLayout.astro';
+import SiteLayout from '../components/SiteLayout.astro';
 import fixture from '../data/plugins-fixture.json';
 
 const snapshotUrl = 'https://assets.herdr.dev/plugins/index.json';
@@ -17,29 +17,39 @@ try {
 }
 const initialData = liveData ?? (import.meta.env.DEV ? fixture : null);
 const initialIsFixture = !liveData && import.meta.env.DEV;
+const totalListed = (
+  initialData?.source?.totalCount ?? initialData?.plugins?.length ?? 0
+).toLocaleString('en-US');
 const apiUrl = import.meta.env.DEV ? null : snapshotUrl;
 ---
 
-<MarketingLayout
+<SiteLayout
   title="Herdr plugins: community plugin marketplace"
   description="Discover community Herdr plugins published on GitHub. An automatic index of public repositories tagged with the herdr-plugin topic."
   canonicalPath="/plugins/"
 >
   <main class="plugins-page">
-    <section class="section plugins-hero">
-      <p class="section-kicker"># marketplace</p>
-      <h2>Plugins built on Herdr.</h2>
-      <p class="plugins-lede">
-        Community plugins published on GitHub. Install any of them with
+    <header class="ph ph-split">
+      <div>
+      <div class="hd-eyebrow"><s></s>the marketplace</div>
+      <h1>Built by the herd.</h1>
+      <p>
+        Community plugins published on GitHub, discovered automatically from the
+        <code>herdr-plugin</code> topic. Install any of them with
         <code>herdr plugin install</code>, or publish your own and get listed.
       </p>
       <p class="plugins-trust">
         <span class="status-dot dot-idle"></span>
-        Listings are discovered automatically from the GitHub topic
-        <code>herdr-plugin</code>. They are not reviewed by Herdr, so install at
-        your own discretion. <a href="/docs/plugins/#trust-and-security">Trust guidance</a>.
+        Listings aren't reviewed by Herdr, so install at your own discretion.
+        <a href="/docs/plugins/#trust-and-security">Trust guidance →</a>
       </p>
-    </section>
+      </div>
+      <aside class="ph-side">
+        <b>{totalListed}</b>
+        <span>plugins listed</span>
+        <a href="/docs/plugins/">Publish yours →</a>
+      </aside>
+    </header>
 
     <section class="section plugins-controls">
       <div class="plugins-search-wrap">
@@ -63,6 +73,9 @@ const apiUrl = import.meta.env.DEV ? null : snapshotUrl;
           <option value="name">Name</option>
         </select>
       </label>
+    </section>
+
+    <section class="section plugins-metabar">
       <p id="plugins-meta" class="plugins-meta" aria-live="polite"></p>
     </section>
 
@@ -626,4 +639,4 @@ const apiUrl = import.meta.env.DEV ? null : snapshotUrl;
       }
     }
   </style>
-</MarketingLayout>
+</SiteLayout>

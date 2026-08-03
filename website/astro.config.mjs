@@ -54,6 +54,10 @@ export default defineConfig({
   redirects: {
     '/ja': '/ja/docs/',
     '/zh-cn': '/zh-cn/docs/',
+    /* /stats/ was public and is linked from elsewhere; the numbers it carried
+       now live in the hero strip and the nav count. One key only — Astro
+       normalizes the trailing slash and treats both spellings as one route. */
+    '/stats': '/',
   },
   integrations: [
     sitemap({
@@ -90,6 +94,20 @@ export default defineConfig({
       },
       customCss: ['./src/styles/starlight.css'],
       head: [
+        // the brand display face; Starlight owns its own <head>, so the
+        // marketing pages' font link doesn't reach docs
+        { tag: 'link', attrs: { rel: 'preconnect', href: 'https://fonts.googleapis.com' } },
+        {
+          tag: 'link',
+          attrs: { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
+        },
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'stylesheet',
+            href: 'https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@400;500;600&display=swap',
+          },
+        },
         {
           // First-visit locale redirect: honors browser language order, then
           // remembers the last locale the reader actually used.
